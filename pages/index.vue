@@ -5,7 +5,9 @@ import { getUserandInterceptor } from '~/api/getUsers';
 import { useCheckTokenStore } from '~/store/checkToken';
 
 const tokenStore = useCheckTokenStore()
-const { userName } = tokenStore
+const { token, userName, saveToken,loginStatus,saveUser } = tokenStore
+
+
 
     const datas= ref([])
 
@@ -16,14 +18,27 @@ const { userName } = tokenStore
         datas.value = await response.results
     }
 
+    function getItem(){
+        if(!token){
+            const test = localStorage.getItem('authToken')
+            // const userNameLocal = localStorage.getItem('userName')
+            
+            saveToken(test)
+            loginStatus(true)
 
+        }
+
+    }
 
     definePageMeta({
     layout: false,
     middleware: 'auth'
 })  
 
-onMounted(()=>getUser())
+onMounted(()=>{
+    getItem()
+    getUser()
+})
 
 </script>
 

@@ -35,6 +35,7 @@ const { defineField, errors, handleSubmit } = useForm({
 const [phoneNumber, phoneNumberAttrs] = defineField('phoneNumber')
 const [otp, otpAttrs] = defineField('otp')
 
+// const { setToken } = setLocalToken()
 
 //Functions
 const  onSubmit =  handleSubmit(async(values) => {
@@ -53,6 +54,8 @@ const submitOTP = handleSubmit(async (values)=>{
     console.log('phone user is ', token.user.phone);
     saveUser(token.user.phone)
     loginStatus(true)
+
+
     consoleValue()
     navigateTo('/')
 

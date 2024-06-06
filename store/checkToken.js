@@ -3,7 +3,7 @@ import { defineStore,storeToRefs } from "pinia";
 import {useLoginStore} from './store'
 
 export const useCheckTokenStore = defineStore('token',()=>{
-
+    
     //state
     const tokenfromStore = ref('')
     const isLogin = ref(false)
@@ -12,21 +12,21 @@ export const useCheckTokenStore = defineStore('token',()=>{
     
     //Methods
     function loginStatus(value){
-        // if(value){
-        //     isLogin.value = value
-        // } else {
-        //     isLogin.value = value
-        // }
+    
         isLogin.value = value
-        console.log('islogin loginStatus() : ', isLogin.value);
+        // console.log('islogin loginStatus() : ', isLogin.value);
+        localStorage.setItem('isLogin', isLogin.value)
+
     }
     
-    function saveToken(tokenReceived){[
+    function saveToken(tokenReceived){
         token.value = tokenReceived
-    ]}
+        localStorage.setItem('authToken', token.value)
+    }
     
     function saveUser(userPhone){
         userName.value = userPhone
+        localStorage.setItem('userName',userName.value)
     }
     function consoleValue(){
         console.log('isLogin :',isLogin.value);
