@@ -533,13 +533,13 @@ const { token, userName, saveToken,loginStatus,saveUser } = tokenStore
  */
 
 
-    async function getUser(){
+    async function getUserData(){
         const response = await getUserandInterceptor()
         console.log(response);
         datas.value = await response.results
     }
 
-    function getItem(){
+    function getLocalToken(){
         if(!token){
             const test = localStorage.getItem('authToken')
             // const userNameLocal = localStorage.getItem('userName')
@@ -555,8 +555,8 @@ const { token, userName, saveToken,loginStatus,saveUser } = tokenStore
 })  
 
 onMounted(()=>{
-    getItem()
-    getUser()
+  getLocalToken()
+    getUserData()
 })
 
 </script>

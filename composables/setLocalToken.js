@@ -4,7 +4,7 @@ import useCheckTokenStore from  '~/store/checkToken'
 // const {token} = useToken
 
 export function setLocalToken(){
-    const token=ref('')
+    const token= ref('')
     
     function setToken(newToken){
         token.value = newToken

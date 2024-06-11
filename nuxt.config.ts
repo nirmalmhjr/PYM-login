@@ -23,6 +23,11 @@ export default defineNuxtConfig({
       },
     },
   },
- 
+  runtimeConfig:{
+    public:{
+      // apiUrl: process.env.VUE_APP_API_URL
+      baseURL: process.env.BASE_URL
+    },
+  }
 })
 

@@ -4,6 +4,7 @@ import { useCheckTokenStore} from '~/store/checkToken'
 
 
 export const getUserandInterceptor = async (endpoint, options = {}) => {
+  const configRun = useRuntimeConfig()
   const checkTokenStore = useCheckTokenStore();
   const {token, userName} = checkTokenStore;
 
@@ -25,8 +26,8 @@ export const getUserandInterceptor = async (endpoint, options = {}) => {
   };
 
   // Set base URL
-    const url = `https://pick.alldaycode.xyz/api/v1/users/${userName}/associated-orgs/`
-
+    // const url = `https://pick.alldaycode.xyz/api/v1/users/${userName}/associated-orgs/`
+    const url = `${configRun.public.baseURL}users/${userName}/associated-orgs/`
 try {
     const response = await fetch(url, config);
     console.log('response useFetch', response);
