@@ -1,27 +1,6 @@
 import { useCheckTokenStore} from '~/store/checkToken'
 
-/* 
-    export const getUser = async(url )=>{
-    const checkToken = useCheckTokenStore()
-    const {token,userName } = checkToken
 
-    // let updatedURL=
-    try {   
-        const response = await fetch(url,{
-            method:'GET',
-            headers: {
-                'Content-Type' : 'application/json',
-                'Authorization' : `Token ${token}`
-            },
-
-        })
-        const data = await response.json()
-        // console.log('data from getuser() :: ', data);
-    } catch (error) {
-        console.log('error from getUser() :: ', error);
-    }
-    return data
-} */
 
 
 export const getUserandInterceptor = async (endpoint, options = {}) => {
@@ -46,11 +25,9 @@ export const getUserandInterceptor = async (endpoint, options = {}) => {
   };
 
   // Set base URL
-//   const baseUrl = process.env.baseUrl + '/api/v1';
     const url = `https://pick.alldaycode.xyz/api/v1/users/${userName}/associated-orgs/`
 
 try {
-    // const response = await fetch(url, config);
     const response = await fetch(url, config);
     console.log('response useFetch', response);
 
