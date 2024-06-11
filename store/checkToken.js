@@ -21,7 +21,8 @@ export const useCheckTokenStore = defineStore('token',()=>{
     
     function saveToken(tokenReceived){
         token.value = tokenReceived
-        localStorage.setItem('authToken', token.value)
+        // localStorage.setItem('authToken', token.value)
+        console.log('token from store ',token);
     }
     
     function saveUser(userPhone){

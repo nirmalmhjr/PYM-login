@@ -7,8 +7,9 @@ import { storeToRefs } from 'pinia'
 import { fetchUser, verifyOTP } from '~/api/fetch';
 // import { getUser } from '~/api/getUsers'
 import { useTheme } from 'vuetify'
+import {setLocalToken } from '~/composables/useToken'
 
-
+const { setToken } = setLocalToken()
 
 const theme = useTheme()
 
@@ -35,7 +36,6 @@ const { defineField, errors, handleSubmit } = useForm({
 const [phoneNumber, phoneNumberAttrs] = defineField('phoneNumber')
 const [otp, otpAttrs] = defineField('otp')
 
-// const { setToken } = setLocalToken()
 
 //Functions
 const  onSubmit =  handleSubmit(async(values) => {
@@ -46,13 +46,14 @@ const  onSubmit =  handleSubmit(async(values) => {
 });
 
 const submitOTP = handleSubmit(async (values)=>{
-    const token = await verifyOTP('https://pick.alldaycode.xyz/api/v1/accounts/onboard/verify/',values, sessionToken.value)
+    const tokenObject = await verifyOTP('https://pick.alldaycode.xyz/api/v1/accounts/onboard/verify/',values, sessionToken.value)
 
-    console.log('token value from ',token);
+    console.log('token value from ',tokenObject);
 
-    saveToken(token.token)
-    console.log('phone user is ', token.user.phone);
-    saveUser(token.user.phone)
+    // saveToken(tokenObject.token)
+    setToken(tokenObject.token)
+    console.log('phone user is ', tokenObject.user.phone);
+    saveUser(tokenObject.user.phone)
     loginStatus(true)
 
 

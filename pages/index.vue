@@ -5,6 +5,9 @@ import DataTableServerSide from '~/component/DataTableServerSide.vue'
 
 import { getUserandInterceptor } from '~/api/getUsers';
 import { useCheckTokenStore } from '~/store/checkToken';
+import {setLocalToken } from '~/composables/useToken'
+
+const { setToken, getToken } = setLocalToken()
 
 const tokenStore = useCheckTokenStore()
 const { token, userName, saveToken,loginStatus,saveUser } = tokenStore
@@ -539,7 +542,7 @@ const { token, userName, saveToken,loginStatus,saveUser } = tokenStore
         datas.value = await response.results
     }
 
-    function getLocalToken(){
+    /* function getLocalToken(){
         if(!token){
             const test = localStorage.getItem('authToken')
             // const userNameLocal = localStorage.getItem('userName')
@@ -547,7 +550,9 @@ const { token, userName, saveToken,loginStatus,saveUser } = tokenStore
             saveToken(test)
             loginStatus(true)
         }
-    }
+    } */
+    
+
 
     definePageMeta({
     layout: false,
@@ -555,7 +560,8 @@ const { token, userName, saveToken,loginStatus,saveUser } = tokenStore
 })  
 
 onMounted(()=>{
-  getLocalToken()
+  // getLocalToken()
+  getToken()
     getUserData()
 })
 
