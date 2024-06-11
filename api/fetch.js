@@ -3,6 +3,7 @@ import { useCheckTokenStore} from '~/store/checkToken'
 
 import {  storeToRefs} from 'pinia'
 
+const configRun = useRuntimeConfig()
 
 export const fetchUser= async (url, values)=>{
     const loginStore = useLoginStore()

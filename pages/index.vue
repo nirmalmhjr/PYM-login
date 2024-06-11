@@ -3,7 +3,7 @@ import InfoDisplay from '~/component/InfoDisplay.vue'
 // import DataTable from '~/component/DataTable.vue'
 import DataTableServerSide from '~/component/DataTableServerSide.vue'
 
-import { getUserandInterceptor } from '~/api/getUsers';
+import { getUserandInterceptor } from '~/api/interceptor';
 import { useCheckTokenStore } from '~/store/checkToken';
 import {setLocalToken } from '~/composables/useToken'
 
@@ -542,15 +542,13 @@ const { token, userName, saveToken,loginStatus,saveUser } = tokenStore
         datas.value = await response.results
     }
 
-    /* function getLocalToken(){
-        if(!token){
-            const test = localStorage.getItem('authToken')
-            // const userNameLocal = localStorage.getItem('userName')
-            
-            saveToken(test)
+    function getLocalToken(){
+            let getTokenFrom = getToken()
+        
+            saveToken(getTokenFrom)
             loginStatus(true)
         }
-    } */
+    
     
 
 
@@ -560,8 +558,7 @@ const { token, userName, saveToken,loginStatus,saveUser } = tokenStore
 })  
 
 onMounted(()=>{
-  // getLocalToken()
-  getToken()
+  getLocalToken()
     getUserData()
 })
 
