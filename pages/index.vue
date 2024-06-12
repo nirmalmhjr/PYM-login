@@ -14,7 +14,7 @@ const { isLogin, userName, saveToken,loginStatus,saveUser } = tokenStore
 
 console.log('userName from store', userName);
 
-    const datas= ref([])
+    const datas= ref(null)
   /*   const datas= ref([
     {
     "slug": "thakali",
@@ -539,8 +539,11 @@ console.log('userName from store', userName);
     async function getUserData(){
         // const response = await getUserandInterceptor()
         const response = await interceptor(`users/${userName}/associated-orgs/`)
-        console.log(response);
-        datas.value = await response.results
+        console.log('response from index',response);
+        datas.value = await response
+
+        console.log('datas from index',datas.value);
+        console.log('datas count from index',datas.count);
     }
 
     function getLocalToken(){
@@ -587,5 +590,5 @@ onMounted(()=>{
 
   <!-- <DataTable :datas="datas"/> -->
 
-  <DataTableServerSide :datas="datas" :username="userName"/>
+  <DataTableServerSide v-if="datas" :datas="datas" :userName="userName"/>
 </template>
