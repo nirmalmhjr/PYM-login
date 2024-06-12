@@ -30,6 +30,7 @@ const loading = ref(true)
 const totalItems = ref(0)
 
 
+
 const headers = ref([
     { title: 'Name', value: 'name', align: 'start' },
     { title: 'Contact no.', value: 'contacts[0].contact_value' },
@@ -43,34 +44,9 @@ async function loadItems({ page, itemsPerPage }) {
     loading.value = true
      
     const offset = (page - 1) * itemsPerPage
-    // console.log(' load items function ran');
-
-/* 
-    let url = `https://pick.alldaycode.xyz/api/v1/users/${props.userName}/associated-orgs/?limit=${itemsPerPage}&offset=${offset}`
-
-    const config = {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Token ${token}`
-        }
-    }
-
-    try {
-        const response = await fetch(url, config)
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        serverItems.value = data.results;
-        totalItems.value = data.count;
- */
-
+    console.log(' result form props', props.datas.count);
+   
     try{
-        console.log('data from data table server side', props.datas.results);
-
         serverItems.value = props.datas.results
         totalItems.value = props.datas.count
     } catch (error) {
