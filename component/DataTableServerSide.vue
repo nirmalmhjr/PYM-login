@@ -30,7 +30,6 @@ const loading = ref(true)
 const totalItems = ref(0)
 
 
-
 const headers = ref([
     { title: 'Name', value: 'name', align: 'start' },
     { title: 'Contact no.', value: 'contacts[0].contact_value' },
