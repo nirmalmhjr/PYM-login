@@ -11,12 +11,12 @@ export function setLocalToken(){
         console.log('setToken from setLocalToken.js : ', token);
     } */
    function setToken(newToken){
-    console.log('before setToken token is ',newToken);
-    console.log('before setToken tokenStore is ',token);
+    // console.log('before setToken token is ',newToken);
+    // console.log('before setToken tokenStore is ',token);
     saveToken(newToken)
     localStorage.setItem('authToken', newToken)
-    console.log('after setToken from setLocalToken.js : ', newToken);
-    console.log('after setToken from tokenValue.js : ', token);
+    // console.log('after setToken from setLocalToken.js : ', newToken);
+    // console.log('after setToken from tokenValue.js : ', token);
    }
 
     function getToken(){

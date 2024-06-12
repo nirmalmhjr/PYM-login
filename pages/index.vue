@@ -3,16 +3,16 @@ import InfoDisplay from '~/component/InfoDisplay.vue'
 // import DataTable from '~/component/DataTable.vue'
 import DataTableServerSide from '~/component/DataTableServerSide.vue'
 
-import { getUserandInterceptor } from '~/api/interceptor';
 import { useCheckTokenStore } from '~/store/checkToken';
 import {setLocalToken } from '~/composables/useToken'
+import {interceptor } from '~/composables/interceptor'
 
 const { setToken, getToken } = setLocalToken()
 
 const tokenStore = useCheckTokenStore()
-const { token, userName, saveToken,loginStatus,saveUser } = tokenStore
+const { isLogin, userName, saveToken,loginStatus,saveUser } = tokenStore
 
-
+console.log('userName from store', userName);
 
     const datas= ref([])
   /*   const datas= ref([
@@ -537,7 +537,8 @@ const { token, userName, saveToken,loginStatus,saveUser } = tokenStore
 
 
     async function getUserData(){
-        const response = await getUserandInterceptor()
+        // const response = await getUserandInterceptor()
+        const response = await interceptor(`users/${userName}/associated-orgs/`)
         console.log(response);
         datas.value = await response.results
     }

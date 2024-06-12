@@ -5,7 +5,6 @@ import { useLoginStore } from '~/store/store';
 import {useCheckTokenStore} from '~/store/checkToken'
 import { storeToRefs } from 'pinia'
 import { fetchUser, verifyOTP } from '~/api/fetch';
-// import { getUser } from '~/api/getUsers'
 import { useTheme } from 'vuetify'
 import {setLocalToken } from '~/composables/useToken'
 
