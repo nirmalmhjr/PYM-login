@@ -7,7 +7,7 @@ import DataTableServerSide from '~/component/DataTableServerSide.vue'
 
 import { useCheckTokenStore } from '~/store/checkToken';
 import {setLocalToken } from '~/composables/useToken'
-import {interceptor } from '~/composables/interceptor'
+import {getInterceptor } from '~/composables/interceptor'
 
 const { setToken, getToken } = setLocalToken()
 
@@ -24,7 +24,7 @@ const { isLogin, userName, saveToken,loginStatus,saveUser } = tokenStore
 
     async function getUserData(){
       const offset = (currentPage.value - 1) * itemsPerPage.value
-      const response = await interceptor(`users/${userName}/associated-orgs/?limit=${itemsPerPage.value}&offset=${offset}`)
+      const response = await getInterceptor(`users/${userName}/associated-orgs/?limit=${itemsPerPage.value}&offset=${offset}`)
       console.log(`users/${userName}/associated-orgs/?limit=${itemsPerPage}&offset=${offset}`);
         // console.log('response from index',response.results);
         datas.value =  response.results

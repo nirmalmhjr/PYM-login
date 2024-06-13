@@ -10,8 +10,8 @@ import {setLocalToken } from '~/composables/useToken'
 const { setToken, getToken } = setLocalToken()
 
 const tokenStore = useCheckTokenStore()
-const { isLogin, saveToken,loginStatus, } = tokenStore
-
+const { userName ,isLogin, saveToken,loginStatus, } = tokenStore
+const itemsPerPage = ref(7)
 
   const headers = ref([
       { title: 'Name', value: 'name', align: 'start' },
@@ -62,5 +62,9 @@ onMounted(()=>{
 
   <!-- <DataTable :datas="datas"/> -->
 
-  <DataTableServerSide :headers="headers"/>
+  <DataTableServerSide
+    :headers="headers"
+    :itemsPerPage="itemsPerPage"
+    :userName="userName"
+  />
 </template>

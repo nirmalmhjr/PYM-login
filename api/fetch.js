@@ -1,4 +1,4 @@
-import { interceptor } from '~/composables/interceptor';
+import { postInterceptor } from '~/composables/interceptor';
 
 
 
@@ -50,32 +50,26 @@ import { interceptor } from '~/composables/interceptor';
 } */
 
 export const fetchUser  = async (url, values)=>{
-    const data = await interceptor(url,{
-        method :'POST',
-        headers:{
-            'Accept': 'application/json',
-        },
-        body:JSON.stringify({
+    const data = await postInterceptor(url,{
             user:{
                 'phone': values.phoneNumber
             }
         })
-    })
-
     return data
-}
+    }
+
+
+ // body: JSON.stringify({
+//     phone: values.phoneNumber,
+//     otp: values.otp,
+//     session_token: sessionToken
+// })
 
 export const verifyOTP = async (url,values, sessionToken)=>{
-    const data =  await interceptor(url, {
-        method:'POST',
-        headers:{
-            'Accept':'application/json',
-        },
-        body: JSON.stringify({
+    const data =  await postInterceptor(url, {
             phone: values.phoneNumber,
             otp: values.otp,
             session_token: sessionToken
-        })
     })
     return data
 }

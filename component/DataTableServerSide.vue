@@ -19,11 +19,8 @@
 </template>
 
 <script setup lang="ts">
-import {interceptor } from '~/composables/interceptor'
-import { useCheckTokenStore } from '~/store/checkToken';
+import {getInterceptor } from '~/composables/interceptor'
 
-const tokenStore = useCheckTokenStore()
-const { userName } = tokenStore
 
 
 const props = defineProps({
@@ -31,28 +28,30 @@ const props = defineProps({
         type:Array,
         required: true
         
+    },
+    userName:{
+        type:String,
+        required:true
+    },
+    itemsPerPage:{
+        type : Number,
+        required : true
     }
+    
     
    
 })
 
 const headers= ref(props.headers)
-const itemsPerPage = ref(5)
+const itemsPerPage = ref(props.itemsPerPage)
 const search = ref('')
 const serverItems = ref([])
 const loading = ref(true)
 const totalItems = ref(0)
+const userName =ref(props.userName)
 
 
 
-/* const headers = ref([
-    { title: 'Name', value: 'name', align: 'start' },
-    { title: 'Contact no.', value: 'contacts[0].contact_value' },
-    { title: 'Take away', value: 'allow_take_away' },
-    { title: 'Delivery', value: 'allow_delivery' },
-    { title: 'Open at', value: 'opening_hours' },
-    { title: 'closes at', value: 'closing_hours' },
-]) */
 
 async function loadItems({ page, itemsPerPage }) {
     loading.value = true
@@ -62,7 +61,7 @@ async function loadItems({ page, itemsPerPage }) {
 
 
     try{
-        const response = await interceptor(`users/${userName}/associated-orgs/?limit=${itemsPerPage}&offset=${offset}`)
+        const response = await getInterceptor(`users/${userName}/associated-orgs/?limit=${itemsPerPage}&offset=${offset}`)
 
 
         serverItems.value = response.results
