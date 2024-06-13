@@ -1,11 +1,8 @@
-import { useLoginStore } from '~/store/store';
-import { useCheckTokenStore} from '~/store/checkToken'
+import { interceptor } from '~/composables/interceptor';
 
-import {  storeToRefs} from 'pinia'
 
-const configRun = useRuntimeConfig()
 
-export const fetchUser= async (url, values)=>{
+/* export const fetchUser= async (url, values)=>{
     const loginStore = useLoginStore()
     const { loginStatus } = loginStore  
 
@@ -33,8 +30,8 @@ export const fetchUser= async (url, values)=>{
         console.log('Error fetching data from fetch.js:', error)
     }
 }
-
-export const verifyOTP  = async (url, values,sessionToken) => {
+ */
+/* export const verifyOTP  = async (url, values,sessionToken) => {
     const response = await fetch(url,{
         method: 'POST',
         headers:{
@@ -50,4 +47,35 @@ export const verifyOTP  = async (url, values,sessionToken) => {
 
     const data = response.json()
     return data 
+} */
+
+export const fetchUser  = async (url, values)=>{
+    const data = await interceptor(url,{
+        method :'POST',
+        headers:{
+            'Accept': 'application/json',
+        },
+        body:JSON.stringify({
+            user:{
+                'phone': values.phoneNumber
+            }
+        })
+    })
+
+    return data
+}
+
+export const verifyOTP = async (url,values, sessionToken)=>{
+    const data =  await interceptor(url, {
+        method:'POST',
+        headers:{
+            'Accept':'application/json',
+        },
+        body: JSON.stringify({
+            phone: values.phoneNumber,
+            otp: values.otp,
+            session_token: sessionToken
+        })
+    })
+    return data
 }

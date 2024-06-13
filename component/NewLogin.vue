@@ -17,8 +17,7 @@ const loginStore = useLoginStore()
 const tokenStore = useCheckTokenStore()
 const {  isLogin, saveToken,saveUser, loginStatus,consoleValue } = tokenStore
 
-console.log('typeof(isLogin)', typeof(isLogin));
-console.log('isLogin',isLogin);
+// console.log('isLogin',isLogin);
 
 const logged = ref(false)
 const sessionToken = ref('')
@@ -38,14 +37,14 @@ const [otp, otpAttrs] = defineField('otp')
 
 //Functions
 const  onSubmit =  handleSubmit(async(values) => {
-    let data = await fetchUser('https://pick.alldaycode.xyz/api/v1/accounts/onboard/', values)
+    let data = await fetchUser('accounts/onboard/', values)
 
     sessionToken.value =  data.session_token
     logged.value = true
 });
 
 const submitOTP = handleSubmit(async (values)=>{
-    const tokenObject = await verifyOTP('https://pick.alldaycode.xyz/api/v1/accounts/onboard/verify/',values, sessionToken.value)
+    const tokenObject = await verifyOTP('accounts/onboard/verify/',values, sessionToken.value)
 
     console.log('token value from ',tokenObject);
 
