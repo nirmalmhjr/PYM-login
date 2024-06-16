@@ -57,23 +57,15 @@ async function loadItems({ page, itemsPerPage }) {
     loading.value = true
      
     const offset = (page - 1) * itemsPerPage
-<<<<<<< HEAD
-
-
-
     try{
         const response = await getInterceptor(`users/${userName}/associated-orgs/?limit=${itemsPerPage}&offset=${offset}`)
 
-
         serverItems.value = response.results
         totalItems.value = response.count
-=======
-    console.log(' result form props', props.datas.count);
    
-    try{
-        serverItems.value = props.datas.results
-        totalItems.value = props.datas.count
->>>>>>> e6d25565e21c9964da7cb2829552ac6315779001
+    
+        serverItems.value = response.results
+        totalItems.value = response.count
     } catch (error) {
         console.error('Fetch error:', error);
     } finally {
@@ -82,6 +74,7 @@ async function loadItems({ page, itemsPerPage }) {
        
 
 }
+
 
 
 onMounted(() => {
