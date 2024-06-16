@@ -13,6 +13,7 @@ const tokenStore = useCheckTokenStore()
 const { userName ,isLogin, saveToken,loginStatus, } = tokenStore
 const itemsPerPage = ref(7)
 
+<<<<<<< HEAD
   const headers = ref([
       { title: 'Name', value: 'name', align: 'start' },
       { title: 'Contact no.', value: 'contacts[0].contact_value' },
@@ -21,6 +22,22 @@ const itemsPerPage = ref(7)
       { title: 'Open at', value: 'opening_hours' },
       { title: 'closes at', value: 'closing_hours' },
   ])
+=======
+console.log('userName from store', userName);
+
+    const datas= ref(null)
+ 
+
+    async function getUserData(){
+        // const response = await getUserandInterceptor()
+        const response = await interceptor(`users/${userName}/associated-orgs/`)
+        console.log('response from index',response);
+        datas.value = await response
+
+        console.log('datas from index',datas.value);
+        console.log('datas count from index',datas.value.count);
+    }
+>>>>>>> e6d25565e21c9964da7cb2829552ac6315779001
 
     function getLocalToken(){
             let getTokenFrom = getToken()

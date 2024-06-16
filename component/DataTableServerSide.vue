@@ -57,6 +57,7 @@ async function loadItems({ page, itemsPerPage }) {
     loading.value = true
      
     const offset = (page - 1) * itemsPerPage
+<<<<<<< HEAD
 
 
 
@@ -66,6 +67,13 @@ async function loadItems({ page, itemsPerPage }) {
 
         serverItems.value = response.results
         totalItems.value = response.count
+=======
+    console.log(' result form props', props.datas.count);
+   
+    try{
+        serverItems.value = props.datas.results
+        totalItems.value = props.datas.count
+>>>>>>> e6d25565e21c9964da7cb2829552ac6315779001
     } catch (error) {
         console.error('Fetch error:', error);
     } finally {
