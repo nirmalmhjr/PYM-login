@@ -63,9 +63,6 @@ async function loadItems({ page, itemsPerPage }) {
         serverItems.value = response.results
         totalItems.value = response.count
    
-    
-        serverItems.value = response.results
-        totalItems.value = response.count
     } catch (error) {
         console.error('Fetch error:', error);
     } finally {
